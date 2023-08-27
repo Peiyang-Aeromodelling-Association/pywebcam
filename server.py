@@ -4,15 +4,17 @@ import cv2 as cv
 app = Flask(__name__,
             template_folder='./templates')
 
-# print available camera devices
-for i in range(10):
-    cap = cv.VideoCapture(i)
-    if cap.isOpened():
-        print('camera device {} is available'.format(i))
-    cap.release()
+camera = None
 
-# 电脑自带摄像头
-camera = cv.VideoCapture(0)
+# scan available camera devices
+for i in range(10):
+    camera = cv.VideoCapture(i)
+    if camera.isOpened():
+        print(f"camera {i} is available, using it")
+        break
+    else:
+        camera.release()
+
 
 @app.route("/")
 def index():
