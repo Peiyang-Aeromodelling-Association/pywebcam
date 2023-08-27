@@ -3,9 +3,16 @@ import cv2 as cv
 
 app = Flask(__name__,
             template_folder='./templates')
+
+# print available camera devices
+for i in range(10):
+    cap = cv.VideoCapture(i)
+    if cap.isOpened():
+        print('camera device {} is available'.format(i))
+    cap.release()
+
 # 电脑自带摄像头
 camera = cv.VideoCapture(0)
-
 
 @app.route("/")
 def index():
@@ -38,10 +45,4 @@ def video_feed():
 
 
 if __name__ == '__main__':
-    # print available camera devices
-    for i in range(10):
-        cap = cv.VideoCapture(i)
-        if cap.isOpened():
-            print('camera device {} is available'.format(i))
-        cap.release()
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)
