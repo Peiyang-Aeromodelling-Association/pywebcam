@@ -38,4 +38,10 @@ def video_feed():
 
 
 if __name__ == '__main__':
+    # print available camera devices
+    for i in range(10):
+        cap = cv.VideoCapture(i)
+        if cap.isOpened():
+            print('camera device {} is available'.format(i))
+        cap.release()
     app.run(host='0.0.0.0', port=5000, debug=True)
