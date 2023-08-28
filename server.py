@@ -11,6 +11,9 @@ for i in range(10):
     camera = cv.VideoCapture(i)
     if camera.isOpened():
         print(f"camera {i} is available, using it")
+        # set camera resolution
+        camera.set(cv.CAP_PROP_FRAME_WIDTH, 1920)
+        camera.set(cv.CAP_PROP_FRAME_HEIGHT, 1080)
         break
     else:
         camera.release()

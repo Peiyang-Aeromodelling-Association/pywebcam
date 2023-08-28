@@ -4,7 +4,7 @@ import requests
 
 print("requesting video feed...")
 
-url = r' http://172.18.77.113:5000/video_feed'
+url = r' http://192.168.43.4:5000/video_feed'
 
 stream = requests.get(url, stream=True)
 
