@@ -1,5 +1,5 @@
 from flask import Flask, render_template, Response
-import cv2 as cv
+import cv2
 
 app = Flask(__name__,
             template_folder='./templates')
@@ -8,12 +8,12 @@ camera = None
 
 # scan available camera devices
 for i in range(10):
-    camera = cv.VideoCapture(i)
+    camera = cv2.VideoCapture(i)
     if camera.isOpened():
         print(f"camera {i} is available, using it")
         # set camera resolution
-        camera.set(cv.CAP_PROP_FRAME_WIDTH, 640)
-        camera.set(cv.CAP_PROP_FRAME_HEIGHT, 480)
+        camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
         camera.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter.fourcc('M', 'J', 'P', 'G'))  # MJPG
         break
     else:
@@ -33,7 +33,7 @@ def gen_frames():
             break
         # 把获取到的图像格式转换(编码)成流数据，赋值到内存缓存中;
         # 主要用于图像数据格式的压缩，方便网络传输
-        ret1, buffer = cv.imencode('.jpg', frame)
+        ret1, buffer = cv2.imencode('.jpg', frame)
         # 将缓存里的流数据转成字节流
         frame = buffer.tobytes()
         # 指定字节流类型image/jpeg
