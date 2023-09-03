@@ -13,7 +13,7 @@ for i in range(10):
         print(f"camera {i} is available, using it")
         # set camera resolution
         camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-        camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 360)
         camera.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter.fourcc('M', 'J', 'P', 'G'))  # MJPG
         break
     else:
